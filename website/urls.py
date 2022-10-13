@@ -1,12 +1,13 @@
 from django.urls import path
 # from .views import about_page_view, home_page_view, contact_page_view
-from .views import HomePageView, AboutPageView, BlogPageView, ContactPageView
+from .views import HomePageView, AboutPageView, BlogPageView, ContactPageView,LoginPageView
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
     path('about-us', AboutPageView.as_view(), name='about'),
     path('blog', BlogPageView.as_view(), name='blog'),
     path('contact-us', ContactPageView.as_view(), name='contact'),
+    # path('login', LoginPageView.as_view(), name='login'),
     
         
     # path('', home_page_view, name='home'),

@@ -38,6 +38,9 @@ class ContactPageView(FormView):
         
         return super().form_valid(form)
             
+            
+class LoginPageView(TemplateView):
+    template_name= 'account/login.html'
 # def home_page_view(request):
 #     return HttpResponse('<h1>Welcome to my home page</h1>')
 

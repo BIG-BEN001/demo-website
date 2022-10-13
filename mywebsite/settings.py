@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+from re import T
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,12 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     # local apps
     'website.apps.WebsiteConfig',
     'users.apps.UsersConfig',
     # Third Party libs
-    "crispy_forms",
-    "crispy_bootstrap5",
+    'crispy_forms',
+    'crispy_bootstrap5',
+    'allauth',
+    'allauth.account',
 ]
 
 MIDDLEWARE = [
@@ -69,9 +73,19 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                   # `allauth` needs this from django
+                # 'django.template.context_processors.request',
             ],
         },
     },
+]
+
+AUTHENTICATION_BACKENDS = [
+
+    'django.contrib.auth.backends.ModelBackend',
+
+    'allauth.account.auth_backends.AuthenticationBackend',
+
 ]
 
 WSGI_APPLICATION = 'mywebsite.wsgi.application'
@@ -150,6 +164,17 @@ AUTH_USER_MODEL = 'users.CustomUser'
 # Email Settings
 DEFAULT_FROM_EMAIL = 'benjaminochieng99@gmail.com'
 EMAIL_BACKEND  = 'django.core.mail.backends.console.EmailBackend'
+
+LOGIN_REDIRECT = '/'
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_REDIRECT = '/'
+SITE_ID = 1
+ACCOUNT_SESSION_REMEMBER =True
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+# ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+# ACCOUNT_AUTHENTICATION_METHOD  = 'username'
 
 # Crispy configs
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
